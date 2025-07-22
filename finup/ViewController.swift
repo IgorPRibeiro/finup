@@ -7,30 +7,82 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var table: UITableView!
+    let cellSpacingHeight: CGFloat = 2
 
-    @IBOutlet weak var headerView: UIView!
+    struct Transaction {
+        let icon: String
+        let name: String
+        let date: String
+        let value: String
+        let subIcon: String
+    }
+    
+    let data: [Transaction] = [
+        Transaction(icon: "market", name: "Supermercado", date: "Hoje", value: "9,99", subIcon: "wallet"),
+        Transaction(icon: "market", name: "Supermercado1", date: "Hoje", value: "9,99", subIcon: "wallet"),
+        Transaction(icon: "market", name: "Supermercado2", date: "Hoje", value: "9,99", subIcon: "wallet"),
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerView.clipsToBounds = true
-        headerView.layer.cornerRadius = 20
-        headerView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
-        self.backgroundHeader()
-        
-        
+        table.dataSource = self
+        table.delegate = self
+        table.backgroundView = nil
+        table.isOpaque = true
+    
     }
     
-    func backgroundHeader()  {
-        let gradient = CAGradientLayer()
-        
-        gradient.colors = [UIColor.headerBlue.cgColor, UIColor.headerPurple.cgColor]
-        gradient.locations = [0,1]
-        gradient.startPoint = CGPoint(x: 0, y: 0)
-        gradient.endPoint = CGPoint(x: 1, y: 0)
-        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: headerView.frame.height)
-        headerView.layer.insertSublayer(gradient, at: 0)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacingHeight
+    }
+    
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let transaction = data[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellHome", for: indexPath) as! HomeTableViewCell
+      
+        cell.iconImageViewL.image = UIImage(named: transaction.icon)
+        cell.titleLabelL.text = transaction.name
+        cell.subtitleLabelL.text = transaction.date
+        cell.valueLabelL.text = transaction.value
+        cell.subIconImageViewL.image = UIImage(named: transaction.subIcon)
+
+    
+        cell.layer.cornerRadius = 12
+        cell.layer.masksToBounds = true
+        cell.contentView.layer.masksToBounds = true
+
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        cell.contentView.layoutMargins = margins
+        cell.contentView.backgroundColor = .clear
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 74
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .clear
+        return headerView
+    }
+    
+ 
 
 
 }
