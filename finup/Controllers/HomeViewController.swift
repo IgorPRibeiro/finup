@@ -8,36 +8,29 @@
 import UIKit
 
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var mounthSpandContainer: UIView!
     let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     let cellSpacingHeight: CGFloat = 2
-
-    struct Transaction {
-        let icon: String
-        let name: String
-        let date: String
-        let value: String
-        let subIcon: String
-    }
     
-    let data: [Transaction] = [
-        Transaction(icon: "market", name: "Supermercado", date: "Hoje", value: "9,99", subIcon: "wallet"),
-        Transaction(icon: "market", name: "Supermercado1", date: "Hoje", value: "9,99", subIcon: "wallet"),
-        Transaction(icon: "market", name: "Supermercado2", date: "Hoje", value: "9,99", subIcon: "wallet"),
+    let data: [TransactionData] = [
+        TransactionData(icon: "market", name: "Supermercado", date: "Hoje", value: "9,99", subIcon: "wallet"),
+        TransactionData(icon: "market", name: "Supermercado1", date: "Hoje", value: "9,99", subIcon: "wallet"),
+        TransactionData(icon: "market", name: "Supermercado2", date: "Hoje", value: "9,99", subIcon: "wallet"),
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         table.dataSource = self
         table.delegate = self
-        table.backgroundView = nil
-        table.isOpaque = true
         mounthSpandContainer.layer.cornerRadius = 16
 
     }
-    
+}
+
+//MARK: - Table View Methods
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -46,22 +39,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cellSpacingHeight
     }
     
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let transaction = data[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellHome", for: indexPath) as! HomeTableViewCell
-      
+    private func configure(_ cell: HomeTableViewCell, with transaction: TransactionData) {
         cell.iconImageViewL.image = UIImage(named: transaction.icon)
         cell.titleLabelL.text = transaction.name
         cell.subtitleLabelL.text = transaction.date
         cell.valueLabelL.text = transaction.value
         cell.subIconImageViewL.image = UIImage(named: transaction.subIcon)
-
-    
         cell.layer.cornerRadius = 12
         cell.layer.masksToBounds = true
         cell.contentView.layer.masksToBounds = true
+    }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let transaction = data[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellHome", for: indexPath) as? HomeTableViewCell else {
+            return UITableViewCell()
+        }
+
+        configure(cell, with: transaction)
         
         return cell
     }
@@ -85,9 +80,4 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         headerView.backgroundColor = .clear
         return headerView
     }
-    
- 
-
-
 }
-
