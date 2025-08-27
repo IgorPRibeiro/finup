@@ -12,6 +12,7 @@ extension UIColor {
     
     static let headerBlue = UIColor().colorFromHex("2563EB")
     static let headerPurple = UIColor().colorFromHex("9333EA")
+    static let valueGreen = UIColor().colorFromHex("4CAF50")
     
     func colorFromHex(_ hex: String) -> UIColor {
         var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

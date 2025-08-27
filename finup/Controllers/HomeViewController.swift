@@ -11,6 +11,9 @@ import UIKit
 class HomeViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var mounthSpandContainer: UIView!
+    
+    
+    
     let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     let cellSpacingHeight: CGFloat = 2
     
@@ -26,6 +29,12 @@ class HomeViewController: UIViewController {
         table.delegate = self
         mounthSpandContainer.layer.cornerRadius = 16
 
+    }
+    
+    @IBAction func btnIncome(_ sender: UIButton) {
+//        let storyBoard = self.storyboard?.instantiateViewController(withIdentifier: "InsertTransactionViewController") as! InsertTransactionViewController
+//        self.navigationController?.pushViewController(storyBoard, animated: true)
+        self.performSegue(withIdentifier: "toInsertTransaction", sender: self)
     }
 }
 

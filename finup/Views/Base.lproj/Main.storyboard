@@ -10,10 +10,75 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Insert Transaction View Controller-->
+        <scene sceneID="71t-5X-rI4">
+            <objects>
+                <viewController storyboardIdentifier="InsertTransactionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Abt-pI-ba6" customClass="InsertTransactionViewController" customModule="finup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iZh-05-dp3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nova Receita" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikw-vf-XQQ">
+                                <rect key="frame" x="16" y="71" width="361" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1H2-7x-L1r">
+                                <rect key="frame" x="16" y="122" width="361" height="503"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w5g-kl-x7L" customClass="ValueContainerView" customModule="finup" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-6" width="361" height="140"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="4I6-1a-BON">
+                                        <rect key="frame" x="0.0" y="162" width="361" height="128"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cFX-mf-m7A" customClass="ValueContainerView" customModule="finup" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="174.66666666666666" height="128"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eMj-0z-DZd" customClass="ValueContainerView" customModule="finup" customModuleProvider="target">
+                                                <rect key="frame" x="186.66666666666663" y="0.0" width="174.33333333333337" height="128"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4I6-1a-BON" firstAttribute="top" secondItem="w5g-kl-x7L" secondAttribute="bottom" constant="12" id="Alf-rk-cn1"/>
+                                    <constraint firstItem="4I6-1a-BON" firstAttribute="leading" secondItem="1H2-7x-L1r" secondAttribute="leading" id="Jmu-by-Zn6"/>
+                                    <constraint firstItem="4I6-1a-BON" firstAttribute="top" secondItem="w5g-kl-x7L" secondAttribute="bottom" constant="12" id="SZX-ZQ-oM1"/>
+                                    <constraint firstAttribute="trailing" secondItem="4I6-1a-BON" secondAttribute="trailing" id="Ygm-Qd-24c"/>
+                                    <constraint firstItem="w5g-kl-x7L" firstAttribute="top" secondItem="1H2-7x-L1r" secondAttribute="top" id="hyj-uj-HsI"/>
+                                    <constraint firstAttribute="trailing" secondItem="w5g-kl-x7L" secondAttribute="trailing" id="pea-H7-G6a"/>
+                                    <constraint firstItem="w5g-kl-x7L" firstAttribute="leading" secondItem="1H2-7x-L1r" secondAttribute="leading" id="sIK-Yp-XM6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="z1w-Ln-gjU"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="1H2-7x-L1r" firstAttribute="top" secondItem="ikw-vf-XQQ" secondAttribute="bottom" constant="16" id="8iC-Z1-MVb"/>
+                            <constraint firstItem="ikw-vf-XQQ" firstAttribute="leading" secondItem="iZh-05-dp3" secondAttribute="leadingMargin" id="DtC-6F-F4P"/>
+                            <constraint firstItem="ikw-vf-XQQ" firstAttribute="top" secondItem="iZh-05-dp3" secondAttribute="topMargin" constant="12" id="J30-T3-k8g"/>
+                            <constraint firstItem="ikw-vf-XQQ" firstAttribute="trailing" secondItem="iZh-05-dp3" secondAttribute="trailingMargin" id="LGc-BK-7kI"/>
+                            <constraint firstItem="1H2-7x-L1r" firstAttribute="leading" secondItem="z1w-Ln-gjU" secondAttribute="leading" constant="16" id="j3n-Ci-Ee6"/>
+                            <constraint firstItem="z1w-Ln-gjU" firstAttribute="trailing" secondItem="1H2-7x-L1r" secondAttribute="trailing" constant="16" id="nNY-0W-RhD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VMj-JB-elS"/>
+                    <connections>
+                        <outlet property="expensesValueContainer" destination="eMj-0z-DZd" id="zTp-p3-kAq"/>
+                        <outlet property="incomeValueContainer" destination="cFX-mf-m7A" id="XBq-ry-qhw"/>
+                        <outlet property="totalValueContainer" destination="w5g-kl-x7L" id="V59-Ig-7at"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CeA-Ut-cdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130.53435114503816" y="688.73239436619724"/>
+        </scene>
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="finup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="HomeViewController" customModule="finup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,6 +197,9 @@
                                                         <buttonConfiguration key="configuration" style="filled" title="+ Nova Receita" buttonSize="medium">
                                                             <color key="baseBackgroundColor" red="0.12941176470588234" green="0.58823529411764708" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="btnIncome:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G12-gf-TEm"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEV-e8-xBG">
                                                         <rect key="frame" x="182.66666666666663" y="0.0" width="170.33333333333337" height="82.666666666666671"/>
@@ -286,6 +354,7 @@
                     <connections>
                         <outlet property="mounthSpandContainer" destination="QV5-Wp-r4X" id="SCm-pA-cVx"/>
                         <outlet property="table" destination="bDX-AT-Ln6" id="leh-Xn-MhG"/>
+                        <segue destination="Abt-pI-ba6" kind="show" identifier="toInsertTransaction" id="yKy-5N-Zd1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
